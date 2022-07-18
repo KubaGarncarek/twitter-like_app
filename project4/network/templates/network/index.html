@@ -1,5 +1,22 @@
 {% extends "network/layout.html" %}
+{% load static %}
 
 {% block body %}
-    TODO
+    <h2 class="headers">All Posts</h2>
+    {% if user.is_authenticated %}
+    <form action="{% url 'new_post' %}" method="post">
+        {% csrf_token %}
+        <div id="new_post" class="posts">
+            <h5>New Post</h5>
+            <div id="new_post_content">
+                <textarea name="content" id="content_of_new_page"></textarea>
+                <button id="add_new_post" type="submit" class="btn btn-outline-info">Post</button>
+            </div>
+        </div>
+    </form>
+    {% endif %}
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/index.js' %}"></script>
 {% endblock %}
